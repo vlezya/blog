@@ -31,9 +31,9 @@ RUN apt-get update -qq \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
   && truncate -s 0 /var/log/*log
 
-WORKDIR /Lessons/VladRomanyuk/my_blog
+WORKDIR /blog
 
-COPY Gemfile /my_blog/Gemfile
-COPY Gemfile.lock /my_blog/Gemfile.lock
+COPY Gemfile /blog/Gemfile
+COPY Gemfile.lock /blog/Gemfile.lock
 
 RUN bundle install

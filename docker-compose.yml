@@ -3,7 +3,7 @@ version: '3.3'
 services:
   backend: &backend
     build: .
-    image: my_blog_app
+    image: blog_app
     depends_on:
       - postgres
     env_file:
@@ -11,7 +11,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - .:/my_blog:cached
+      - .:/blog:cached
       - bundle:/usr/local/bundle
       - rails_cache:/app/tmp/cache
     tmpfs:
