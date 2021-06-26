@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+  backend: &backend
+    build: .
+    image: my_blog_app
+    depends_on:
+      - postgres
+    env_file:
+      - .env.development
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/my_blog:cached
+      - bundle:/usr/local/bundle
+      - rails_cache:/app/tmp/cache
+    tmpfs:
+      - /tmp
+
+  app:
+    <<: *backend
+    container_name: application
+    ports:
+      - 3000:3000
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+
+  postgres:
+    image: postgres:9.6
+    container_name: postgres
+    ports:
+      - 5432
+    env_file:
+      - .env.development
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  bundle:
+  db_data: {}
+  rails_cache:
