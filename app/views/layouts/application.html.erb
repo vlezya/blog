@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-light bg-light d-flex">
+      <div class="container">
+        <div class="logo">
+          <a class="navbar-brand" href="#">
+            My Blog
+          </a>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+            Username
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li><button class="dropdown-item" type="button">Sign out</button></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+     <main class="container" style="min-height: 500px;">
+      <%= yield %>
+    </main>
   </body>
 </html>
+
